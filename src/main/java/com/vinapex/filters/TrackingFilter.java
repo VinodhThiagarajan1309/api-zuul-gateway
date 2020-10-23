@@ -6,7 +6,9 @@ import com.netflix.zuul.exception.ZuulException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TrackingFilter extends ZuulFilter {
 
     private static final int FILTER_ORDER = 1;
@@ -45,15 +47,15 @@ public class TrackingFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         if(isCorrelationIdPresent()) {
-            logger.debug("tmx-correlation-id found in tracking filter : {}.",filterUtils.getCorrelationId());
+            logger.info("tmx-correlation-id found in tracking filter : {}.",filterUtils.getCorrelationId());
         } else {
             filterUtils.setCorrelationId(generateCorrelationId());
         }
 
-        logger.debug("tmx-correlation-id generated in tracking filter : {}.", filterUtils.getCorrelationId());
+        logger.info("tmx-correlation-id generated in tracking filter : {}.", filterUtils.getCorrelationId());
 
         RequestContext ctx = RequestContext.getCurrentContext();
-        logger.debug("Processing incoming Request for {}.",ctx.getRequest().getRequestURI());
+        logger.info("Processing incoming Request for {}.",ctx.getRequest().getRequestURI());
         return null;
     }
 }
