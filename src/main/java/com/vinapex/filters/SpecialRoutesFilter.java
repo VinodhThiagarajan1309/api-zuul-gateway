@@ -109,7 +109,7 @@ public class SpecialRoutesFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
 
-        RequestContext ctx = RequestContext.getCurrentContext();
+        /*RequestContext ctx = RequestContext.getCurrentContext();
 
         AbTestingRoute abTestingRoute = getAbRoutingInfo(filterUtils.getServiceId());
 
@@ -123,7 +123,7 @@ public class SpecialRoutesFilter extends ZuulFilter {
 
             forwardToSpecialRoute(route);
 
-        }
+        }*/
         return null;
     }
 
